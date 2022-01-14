@@ -39,3 +39,4 @@ errors
 201: created
 400: bad request
 Postman collection link: https://www.getpostman.com/collections/c956c83bf63b238a42d7 
+heroku: https://newss-api.herokuapp.com/ 
