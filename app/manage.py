@@ -46,7 +46,7 @@ if __name__ == '__main__':
         return cease_continuous_run
 
 
-    schedule.every().day.at("15:35").do(recurringjob)
+    schedule.every().day.at("16:45").do(recurringjob)
 
     #Multithreading prolly
     # Start the background thread
