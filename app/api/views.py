@@ -142,7 +142,7 @@ class Upvote(APIView):
         return cease_continuous_run
 
 
-    schedule.every().day.at("16:12").do(recurringjob)
+    schedule.every().day.at("15:19").do(recurringjob)
 
     #Multithreading prolly
     # Start the background thread
