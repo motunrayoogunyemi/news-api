@@ -120,8 +120,8 @@ class Upvote(APIView):
 
     schedule.every(1).day.at("00:00").do(recurringjob)
 
-
-    while 1:
+    
+    while False:
         schedule.run_pending()
         time.sleep(1)
 
