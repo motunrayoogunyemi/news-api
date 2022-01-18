@@ -4,6 +4,7 @@ psycopg2>=2.7.5,<2.8.0
 psycopg2-binary
 gunicorn
 dj_database_url
+schedule
 
 black
 flake8>=3.6.0,<3.7.0

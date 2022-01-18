@@ -12,7 +12,8 @@ class Posts(models.Model):
         return self.post_title
 
     def total_upvotes(self):
-        return self.post_upvotes.count()
+        self.post_upvotes += 1
+        self.save(force_update=True)
 
 
 class Comments(models.Model):

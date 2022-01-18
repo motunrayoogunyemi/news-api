@@ -1,3 +1,4 @@
+import schedule, time
 from urllib import response
 from django.shortcuts import render
 from django.http import HttpResponse, Http404
@@ -99,12 +100,30 @@ class Upvote(APIView):
         except:
             raise Http404
 
-    def post(self, request):
-        serializer = PostvoteSerializer(data=request.data)
-        if serializer.is_valid():
-           serializer.save()
-           return Response(serializer.data, status=status.HTTP_201_CREATED)
+    # def post(self, request):
+    #     serializer = PostvoteSerializer(data=request.data)
+    #     if serializer.is_valid():
+    #         serializer.total_upvotes()
+    #         serializer.save()
+    #         return Response(serializer.data, status=status.HTTP_201_CREATED)
 
+    def post(self, request, pk):
+        vote = self.get_vote(pk)
+        vote.total_upvotes()
+        return Response({f'Post {vote} has been successfully upvoted'})
+
+    def recurringjob():
+        myposts = Posts.objects.all()
+        myposts.post_upvotes = 0
+        return Response('updated')
+        
+
+    schedule.every(1).day.at("00:00").do(recurringjob)
+
+
+    while 1:
+        schedule.run_pending()
+        time.sleep(1)
 
         
 
