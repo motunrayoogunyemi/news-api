@@ -19,4 +19,4 @@ COPY ./app /app
 RUN adduser -D user
 USER user
 
-RUN "*/5 * * * *" manage.py runjobs minutely
+RUN @daily manage.py runjobs minutely
