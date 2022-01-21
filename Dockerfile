@@ -15,9 +15,7 @@ RUN apk del .tmp-build-deps
 RUN mkdir /app
 WORKDIR /app
 COPY ./app /app
+RUN python manage.py crontab add
 
 RUN adduser -D user
 USER user
-
-WORKDIR /app
-RUN python manage.py crontab add
