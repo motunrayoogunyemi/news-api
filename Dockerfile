@@ -19,4 +19,4 @@ COPY ./app /app
 RUN adduser -D user
 USER user
 
-RUN python manage.py crontab add
+RUN python app/manage.py crontab add
