@@ -7,6 +7,7 @@ COPY ./requirements.txt /requirements.txt
 RUN apk add --update --no-cache postgresql-client
 RUN apk add --update --no-cache --virtual .tmp-build-deps \
     postgresql-dev
+RUN apk add --update busybox-suid
 RUN apk add --no-cache gcc musl-dev linux-headers \
 && pip install --upgrade pip \
 && pip install -r requirements.txt
