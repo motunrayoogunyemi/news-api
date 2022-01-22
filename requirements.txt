@@ -7,4 +7,6 @@ dj_database_url
 schedule
 black
 flake8>=3.6.0,<3.7.0
-django-crontab
+celery
+redis
+django-celery-beat

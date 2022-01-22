@@ -41,7 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'django_crontab'
+    'django_celery_beat'
 ]
 
 MIDDLEWARE = [
@@ -124,6 +124,14 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-CRONJOBS = [
-    ('*/5 * * * *', 'app.cron.execute')
-]
+from celery.schedules import crontab
+
+CELERY_BROKER_URL = os.environ.get("REDIS_URL")
+CELERY_TASK_SERIALIZER= "json"
+CELERY_BEAT_SCHEDULE = {
+    'run-every-5-mins':{
+        'task':'tasks.cleanvotes',
+        'schedule': crontab(minute='*/5')
+    }
+}
+CELERY_BEAT_SCHEDULER = 'django_celery_beat.schedulers:DatabaseScheduler'
