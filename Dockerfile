@@ -20,3 +20,5 @@ COPY ./app /app
 
 RUN adduser -D user
 USER user
+
+CMD python manage.py makemigrations
