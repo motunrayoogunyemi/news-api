@@ -1,6 +1,6 @@
 # Create your tasks here
 
-from .models import Posts
+from api.models import Posts
 
 from celery import shared_task
 
