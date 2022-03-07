@@ -1,12 +1,10 @@
-# Create your tasks here
-
 from api.models import Posts
 
-from celery import shared_task
+def update_something():
+    print("this function runs every 10 seconds")
 
-
-@shared_task
 def cleanvotes():
     print("Running task...")
     myposts = Posts.objects.all()
     myposts.post_upvotes = 0
+    print("Done running")

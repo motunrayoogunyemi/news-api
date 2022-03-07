@@ -41,7 +41,6 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'django_celery_beat'
 ]
 
 MIDDLEWARE = [
@@ -78,10 +77,15 @@ WSGI_APPLICATION = 'app.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.1/ref/settings/#databases
 
-DATABASES = {}
-
-
-DATABASES['default'] = dj_database_url.config(conn_max_age=600, ssl_require=True)
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'HOST': os.environ.get('DB_HOST'),
+        'NAME': os.environ.get('DB_NAME'),
+        'USER': os.environ.get('DB_USER'),
+        'PASSWORD': os.environ.get('DB_PASSWORD'),
+    }
+}
 
 
 
@@ -123,15 +127,3 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
 STATIC_URL = '/static/'
-
-from celery.schedules import crontab
-
-CELERY_BROKER_URL = os.environ.get("REDIS_URL")
-CELERY_TASK_SERIALIZER= "json"
-CELERY_BEAT_SCHEDULE = {
-    'run-every-5-mins':{
-        'task':'tasks.cleanvotes',
-        'schedule': crontab(minute='*/5')
-    }
-}
-CELERY_BEAT_SCHEDULER = 'django_celery_beat.schedulers:DatabaseScheduler'
