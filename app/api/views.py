@@ -1,9 +1,11 @@
+from lib2to3.pytree import Base
 import schedule, time, threading
 from urllib import response
 from django.shortcuts import render
 from django.http import HttpResponse, Http404
-from .models import Posts, Comments
-from .serializers import PostSerializer, CommentSerializer, PostvoteSerializer
+from api.models import Posts, Comments
+from api.serializers import PostSerializer, CommentSerializer, PostvoteSerializer
+from django.db import connection
 
 from rest_framework import status, permissions
 from rest_framework.views import APIView
@@ -14,8 +16,9 @@ class Postnews1(APIView):
 
     def get(self, request):
         myposts = Posts.objects.all()
-        serializer = PostSerializer(myposts, many=True)
+        serializer = PostSerializer(myposts, many=True)   
         return Response(serializer.data)
+        
 
     def post(self, request):
         serializer = PostSerializer(data=request.data)
@@ -35,7 +38,9 @@ class Postnews2(APIView):
     def get(self, request, pk):
         myposts = self.get_post(pk)
         serializer = PostSerializer(myposts)
+     
         return Response(serializer.data)
+        
 
     def put(self, request, pk):
         myposts = self.get_post(pk)

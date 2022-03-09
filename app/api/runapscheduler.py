@@ -1,9 +1,8 @@
 from apscheduler.schedulers.background import BackgroundScheduler
-from .upvote_reset import update_something, cleanvotes
+from .upvote_reset import cleanvotes
 
 
 def start():
     scheduler = BackgroundScheduler()
-    scheduler.add_job(update_something, 'interval', seconds=20)
-    scheduler.add_job(cleanvotes, 'interval', seconds=60)
+    scheduler.add_job(cleanvotes, trigger='cron', hour=0, minute=0, id='clean_votes', replace_existing=True)
     scheduler.start()
