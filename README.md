@@ -5,13 +5,13 @@ Overview
 
 News-Api is organized around REST. It provides many separate REST APIs for getting news posts, making comments and upvoting a post. Our API returns JSON-encoded responses, and uses standard HTTP response codes, authentication, and verbs.
 
-###### url
+#### url
 
 $ https://newss-api.herokuapp.com/
 
-Endpoints
+#### Endpoints
 
-GET ALL
+##### GET ALL
 
 Endpoint: /posts
 
@@ -19,7 +19,7 @@ Endpoint: /comments
 
 Response will be an object containing the list of news/comments (array) 
 
-GET ONE
+##### GET ONE
 
 Endpoint: /posts/{post_id}
 
@@ -27,7 +27,7 @@ Endpoint: /comment/{comment_id}
 
 Response will be an object containing a news/comment
 
-POST
+##### POST
 
 Endpoint: /posts
 
@@ -37,7 +37,7 @@ Endpoint: /vote
 
 Response will be an object containing the new post 
 
-PUT
+##### PUT
 
 Endpoint: /posts/{post_id}
 
@@ -45,7 +45,7 @@ Endpoint: /comments/{comment_id}
 
 Response will be an object containing the updated post 
 
-DELETE
+##### DELETE
 
 Endpoint: /posts/{post_id}
 
@@ -54,7 +54,7 @@ Endpoint: /comments/{comment_id}
 Response will be a json message(‘successfully deleted”)
 
 
-Errors
+#### Errors
 
 200: success
 
