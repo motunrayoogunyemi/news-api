@@ -1,5 +1,4 @@
 from lib2to3.pytree import Base
-import schedule, time, threading
 from urllib import response
 from django.shortcuts import render
 from django.http import HttpResponse, Http404
